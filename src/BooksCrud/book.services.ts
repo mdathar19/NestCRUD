@@ -9,7 +9,7 @@ import { responseBack } from "src/assets/responseType/res.services";
 export class bookService {
 
     // here i take variable books with type Books[] with initially blank array 
-    public books : Books[] = []
+    public books : Books[] = [ ]
     constructor ( private response : responseBack){}
     // add book
     addBook (book : Books) : response {
@@ -18,8 +18,13 @@ export class bookService {
         // response = {message : 'book added successfully',errorCode : 200 , data :[]}
         return this.response.success()
     }
-    // find book
-    findBook () :Books[] {
+    // find book for using Pipe
+    findBook (id : number) :Books[] {
+        console.log(id)
+        return this.books
+    }
+    // findAllBooks
+    findAllBook () :Books[] {
         return this.books
     }
     // delete book

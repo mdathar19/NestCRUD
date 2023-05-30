@@ -2,7 +2,7 @@
 
 export interface response {
     message : string , 
-    errorCode : number,
+    statusCode : number,
     data : any
 }
 

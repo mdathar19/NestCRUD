@@ -6,17 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resModule = void 0;
+exports.bookGuard = void 0;
 const common_1 = require("@nestjs/common");
-const res_controller_1 = require("./res.controller");
-let resModule = class resModule {
+let bookGuard = class bookGuard {
+    constructor() {
+        this.token = "1983#@^%#36^%^=-3#$%2252Bfdsdf425$%vf#";
+    }
+    canActivate(context) {
+        let ctx = context.switchToHttp();
+        let request = ctx.getRequest();
+        if (!request.headers['token'])
+            return false;
+        return request.headers['token'] === "1983#@^%#36^%^=-3#$%2252Bfdsdf425$%vf#";
+    }
 };
-resModule = __decorate([
-    (0, common_1.Module)({
-        imports: [],
-        providers: [res_controller_1.responseBack],
-        controllers: [],
-    })
-], resModule);
-exports.resModule = resModule;
-//# sourceMappingURL=res.module.js.map
+bookGuard = __decorate([
+    (0, common_1.Injectable)()
+], bookGuard);
+exports.bookGuard = bookGuard;
+//# sourceMappingURL=book.guard.js.map

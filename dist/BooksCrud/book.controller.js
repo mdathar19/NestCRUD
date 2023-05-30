@@ -15,12 +15,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.bookController = void 0;
 const common_1 = require("@nestjs/common");
 const book_services_1 = require("./book.services");
+const book_guard_1 = require("./book.guard");
+const book_pipe_1 = require("../pipes/book.pipe");
 let bookController = class bookController {
     constructor(books) {
         this.books = books;
     }
-    findBooks() {
-        return this.books.findBook();
+    findBooks(id) {
+        return this.books.findBook(id);
+    }
+    ParseBoolean(id) {
+        return this.books.findBook(id);
+    }
+    findAllBooks() {
+        return this.books.findAllBook();
     }
     addBook(newBook) {
         return this.books.addBook(newBook);
@@ -33,14 +41,29 @@ let bookController = class bookController {
     }
 };
 __decorate([
-    (0, common_1.Get)('/findAllBook'),
+    (0, common_1.Get)('/ParseIntPipe/:id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Array)
 ], bookController.prototype, "findBooks", null);
 __decorate([
+    (0, common_1.Get)('/ParseBoolPipe/:id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseBoolPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Array)
+], bookController.prototype, "ParseBoolean", null);
+__decorate([
+    (0, common_1.Get)('/findAllBook'),
+    (0, common_1.UseGuards)(book_guard_1.bookGuard),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Array)
+], bookController.prototype, "findAllBooks", null);
+__decorate([
     (0, common_1.Post)('/addBook'),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)(new book_pipe_1.bookPipe())),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Object)

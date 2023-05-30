@@ -11,7 +11,11 @@ const common_1 = require("@nestjs/common");
 const book_services_1 = require("./book.services");
 const book_controller_1 = require("./book.controller");
 const res_services_1 = require("../assets/responseType/res.services");
+const book_middleware_1 = require("./book.middleware");
 let BookModule = class BookModule {
+    configure(consumer) {
+        consumer.apply(book_middleware_1.bookMiddleware).forRoutes('book');
+    }
 };
 BookModule = __decorate([
     (0, common_1.Module)({

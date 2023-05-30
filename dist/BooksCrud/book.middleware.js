@@ -6,16 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.responseBack = void 0;
+exports.bookMiddleware = void 0;
 const common_1 = require("@nestjs/common");
-let responseBack = class responseBack {
-    success(data) {
-        let obj = { message: "success", errorCode: 200, data: data ? data : [] };
-        return obj;
+let bookMiddleware = class bookMiddleware {
+    use(req, res, next) {
+        console.log('bookModule -> This is only for Book Middleware');
+        let protocol = req.protocol;
+        let host = req.get('host');
+        let url = req.originalUrl;
+        let method = req.method;
+        let date = new Date().toDateString();
+        console.log(protocol + "://" + host + url + "  " + method + "  " + date);
+        next();
     }
 };
-responseBack = __decorate([
+bookMiddleware = __decorate([
     (0, common_1.Injectable)()
-], responseBack);
-exports.responseBack = responseBack;
-//# sourceMappingURL=res.controller.js.map
+], bookMiddleware);
+exports.bookMiddleware = bookMiddleware;
+//# sourceMappingURL=book.middleware.js.map

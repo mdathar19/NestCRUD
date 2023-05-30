@@ -5,7 +5,7 @@ import { response } from "./res.interface";
 @Injectable()
 export class responseBack {
     success (data : any = []) : response {
-        let obj = {message : "success" , errorCode : 200 , data:data?data:[]}
+        let obj = {message : "success" , statusCode : 200 , data:data?data:[]}
         return obj
     }
 }

@@ -6,7 +6,8 @@ export declare class bookService {
     books: Books[];
     constructor(response: responseBack);
     addBook(book: Books): response;
-    findBook(): Books[];
+    findBook(id: number): Books[];
+    findAllBook(): Books[];
     deleteBook(bookId: string): string;
     updateBook(updatedbook: Books): string;
 }

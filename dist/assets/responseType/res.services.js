@@ -10,7 +10,7 @@ exports.responseBack = void 0;
 const common_1 = require("@nestjs/common");
 let responseBack = class responseBack {
     success(data = []) {
-        let obj = { message: "success", errorCode: 200, data: data ? data : [] };
+        let obj = { message: "success", statusCode: 200, data: data ? data : [] };
         return obj;
     }
 };

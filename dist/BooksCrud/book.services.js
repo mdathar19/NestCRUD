@@ -23,7 +23,11 @@ let bookService = class bookService {
         this.books.push(book);
         return this.response.success();
     }
-    findBook() {
+    findBook(id) {
+        console.log(id);
+        return this.books;
+    }
+    findAllBook() {
         return this.books;
     }
     deleteBook(bookId) {
